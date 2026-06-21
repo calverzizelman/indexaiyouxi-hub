@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 资料索引导航站</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f9fc;
+      color: #1a2a34;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+    .page {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 1.2rem 0 3rem;
+    }
+
+    /* 顶部导航 */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0 1.2rem;
+      border-bottom: 2px solid #d3e7f0;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .logo-icon {
+      background: #0e7a8a;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px 4px 10px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    .logo-text {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #115b6b;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2b5f6a;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #38b2ac;
+      color: #0e7a8a;
+    }
+
+    /* hero 区 */
+    .hero {
+      padding: 1.2rem 0 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #0e7a8a 0%, #2aa79e 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.75rem;
+    }
+    .hero p {
+      max-width: 760px;
+      font-size: 1.1rem;
+      color: #2e4b55;
+      background: rgba(14, 122, 138, 0.05);
+      padding: 0.6rem 1rem 0.6rem 1.2rem;
+      border-left: 4px solid #38b2ac;
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* 网格卡片通用 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: 0 8px 20px rgba(0, 35, 45, 0.05);
+      border: 1px solid #d9eaf0;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 12px 30px rgba(0, 70, 80, 0.08);
+      transform: translateY(-3px);
+    }
+    .card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      color: #0d5f6e;
+      margin-bottom: 0.7rem;
+    }
+    .card h3 span {
+      background: #e1f0f5;
+      width: 32px;
+      height: 32px;
+      border-radius: 12px 4px 12px 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #1f3a42;
+    }
+    .card ul {
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+    }
+    .card ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* 说明区块 (常见问题摘要) */
+    .faq-section {
+      background: #f0f7fa;
+      border-radius: 24px;
+      padding: 1.8rem 2rem 2rem;
+      margin: 2.2rem 0 2rem;
+      border: 1px solid #cfe2ea;
+    }
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 650;
+      color: #0d5f6e;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .faq-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed #b9d2dd;
+    }
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+    .faq-q {
+      font-weight: 600;
+      color: #175c69;
+      margin-bottom: 0.2rem;
+      font-size: 0.98rem;
+    }
+    .faq-a {
+      color: #2e505b;
+      font-size: 0.92rem;
+      padding-left: 0.6rem;
+    }
+
+    /* 嵌入链接的句子样式 */
+    .inline-link {
+      color: #0e7a8a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #7ab8c5;
+    }
+    .inline-link:hover {
+      color: #176c7c;
+      border-bottom: 1px solid #0e7a8a;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #d3e1e8;
+      font-size: 0.85rem;
+      color: #4b6c78;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    /* 移动端调整 */
+    @media (max-width: 680px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .faq-section { padding: 1.5rem 1rem; }
+      .grid-cards { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 顶部导航 -->
+  <header class="navbar">
+    <div class="logo-area">
+      <div class="logo-icon">Ai</div>
+      <span class="logo-text">资料索引</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#intro">信息整理</a></li>
+      <li><a href="#scenes">应用场景</a></li>
+      <li><a href="#faq">常见说明</a></li>
+    </ul>
+  </header>
+
+  <!-- hero 核心介绍 -->
+  <section class="hero" id="intro">
+    <h1>爱游戏 · 资料梳理与导航</h1>
+    <p>
+      从游戏资讯、行业数据到玩家社区，<a href="https://indexaiyouxi.com.cn" class="inline-link">爱游戏</a>致力于将分散的信息节点转化为结构化的索引线索。这里不以推荐或评测为主，而是以资料整理与内容聚合的角度，帮你更快找到感兴趣的信息原点。
+    </p>
+  </section>
+
+  <!-- 三个场景模块 (网格卡片) -->
+  <section id="scenes">
+    <div class="grid-cards">
+      <!-- 卡片 1：信息分类 -->
+      <div class="card">
+        <h3><span>📂</span> 分类信息库</h3>
+        <p>按游戏类型、平台、发行年份等维度组织索引，收录超过 20 个细分标签。适合需要快速筛选某一领域资料的使用者，如独立游戏、roguelike、模拟经营等。</p>
+        <ul>
+          <li>专题目录与更新日志</li>
+          <li>外部参考链接汇总</li>
+          <li>版本迭代记录</li>
+        </ul>
+      </div>
+      <!-- 卡片 2：行业动态线索 -->
+      <div class="card">
+        <h3><span>📡</span> 动态线索站</h3>
+        <p>汇集每月值得关注的游戏行业事件、开发者访谈、市场报告等。每个线索附带摘要与原文出处，方便进一步查阅。</p>
+        <ul>
+          <li>月度资讯简报</li>
+          <li>行业报告摘要</li>
+          <li>活动与展会时间线</li>
+        </ul>
+      </div>
+      <!-- 卡片 3：索引工具说明 -->
+      <div class="card">
+        <h3><span>🔍</span> 检索与标签</h3>
+        <p>通过多重标签交叉筛选，可以缩小信息范围。例如同时选择「国产 + 像素风 + 策略」即可看到相关条目。标签体系持续由维护者补充。</p>
+        <ul>
+          <li>标签组合过滤</li>
+          <li>热门索引排行</li>
+          <li>反馈与修正入口</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <section class="faq-section" id="faq">
+    <h2>📌 常见说明</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">这个索引站的数据来源是什么？</div>
+      <div class="faq-a">内容主要整理自公开的游戏资料、开发者访谈、行业报告及社区讨论，每一条索引都会注明原始出处或参考链接。索引站本身不存储受版权保护的原文件。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">我可以提交新的资料线索吗？</div>
+      <div class="faq-a">目前通过页面底部的联系方式或 <a href="https://indexaiyouxi.com.cn" class="inline-link">爱游戏</a> 站内反馈通道提交。建议附上来源链接与简要说明，维护者会定期评估并更新索引库。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">索引更新频率大概是多久？</div>
+      <div class="faq-a">常规更新每两周一次，遇重大游戏展会或行业动态会临时增加补充条目。索引页面会标注最近一次更新时间。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">是否包含商业合作内容？</div>
+      <div class="faq-a">索引站目前保持独立的资料整理属性，不包含付费推广或商业合作条目。所有收录均基于信息价值与相关性判断。</div>
+    </div>
+  </section>
+
+  <!-- 一个指向主站的句子（已自然嵌入，同时额外出现一次链接） -->
+  <p style="margin:1rem 0 0.2rem; font-size:0.95rem; color:#2b5f6a;">
+    如果你希望深入了解索引背后的分类逻辑或查看完整列表，可直接前往
+    <a href="https://indexaiyouxi.com.cn" class="inline-link">爱游戏</a>
+    资料总览页。
+  </p>
+
+  <!-- 页脚 -->
+  <footer class="footer-note">
+    <span>© 2025 · 资料索引站</span>
+    <span>内容仅供参考，请以原始来源为准</span>
+  </footer>
+
+</div>
+</body>
+</html>
